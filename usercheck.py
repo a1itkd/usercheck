@@ -33,6 +33,7 @@ def check_users_without_password():
 
     return users_without_pass
 
+
 def check_locked_accounts():
     print(Fore.YELLOW + "[+] Checking for locked accounts...")
     locked_accounts = []
@@ -64,8 +65,9 @@ def check_sudo_users():
 
     return sudo_users
 
+
 def check_inactive_users_by_home(days_threshold=90):
-    print(Fore.YELLOW + f"[+] Checking for inactive users (by /home last access > {days_thre>
+    print(Fore.YELLOW + f"[+] Checking for inactive users (by /home last access > {days_threshold} days)...")
     inactive_users = []
     current_time = time.time()
 
@@ -125,7 +127,8 @@ def write_report(data):
         report += "[+] No locked accounts found.\n"
 
     report += "\n"
-if data["sudo_users"]:
+
+    if data["sudo_users"]:
         report += "[!] Users with sudo privileges:\n"
         for user in data["sudo_users"]:
             report += f"    - {user}\n"
@@ -156,6 +159,7 @@ if data["sudo_users"]:
         f.write(report)
 
     print(Fore.GREEN + f"[+] Report written to {report_name}")
+
 
 if __name__ == "__main__":
     threshold = 90
